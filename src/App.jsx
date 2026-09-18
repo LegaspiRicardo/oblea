@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
 import './App.css'
+import Stack from './components/Stack'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -11,8 +9,10 @@ function App() {
   const monosImages = [
     '/images/dibujos/taika.png',
     '/images/dibujos/zorro.png',
+    '/images/dibujos/pajarito.png',
     '/images/dibujos/nepo3.png',
-    '/images/dibujos/michoacanabn.png',
+    '/images/dibujos/pomodoro.png',
+    '/images/dibujos/gancho.png',
   ]
   const extendedMonosImages = [...monosImages, monosImages[0]]
 
@@ -35,6 +35,7 @@ function App() {
     }
   }
 
+  // --- Lógica Garabatos Mafufos ---
   const mafufosGrid = [
     '/images/dibujos/fondo1.png',
     '/images/dibujos/fondo2.png',
@@ -43,8 +44,6 @@ function App() {
   ]
 
   const [mafufosStep, setMafufosStep] = useState(0)
-
-
   const currentRotation = mafufosStep * -90
 
   useEffect(() => {
@@ -55,6 +54,13 @@ function App() {
     return () => clearInterval(interval)
   }, [])
 
+  // --- Imágenes para el componente Stack ---
+  const stackImages = [
+    '/images/dibujos/fannepo1.jpg',
+    '/images/dibujos/fannepo2.jpg',
+    '/images/dibujos/fannepo3.jpg',
+  ]
+
   return (
     <div className="min-h-screen bg-stone-300 text-black flex flex-col items-center p-3">
       <section className='w-full flex mt-4'>
@@ -62,7 +68,7 @@ function App() {
           <h1 className="text-6xl font-bold">
             <span className="inline-block scale-y-150 origin-bottom">_oblea_</span>
           </h1>
-          <p className='text-sm mt-6 font-bold text-justify w-10/12 inline-block uppercase scale-y-200 origin-bottom'>Monero ermitaño tapatío</p>
+          <p className='text-sm mt-6 font-bold text-justify w-10/12 inline-block uppercase scale-y-200 origin-bottom'>Monero tapatío</p>
           <p className='text-sm w-11/12 text-justify'>- Animador profesional</p>
           <p className='text-sm w-full'>- Residente en: <span className="text-azuloblea font-semibold">Casa del Autor de ZPN</span></p>
           <p className='text-sm w-11/12 text-justify'>- Fanzines, Prints, Stickers y más</p>
@@ -97,19 +103,19 @@ function App() {
               >
                 {/* Cuadrante 1 */}
                 <div className='w-full h-full flex items-center justify-center'>
-                  <img src={mafufosGrid[0]} alt="Garabato 1" className='h-52 mx-auto rounded-xl' />
+                  <img src={mafufosGrid[0]} alt="Garabato 1" className='h-52 w-52 mx-auto rounded-xl' />
                 </div>
-                {/* Cuadrante 2 (Gira 90° sobre sí misma para quedar derechita al entrar) */}
+                {/* Cuadrante 2 */}
                 <div className='w-full h-full flex items-center justify-center rotate-90'>
-                  <img src={mafufosGrid[1]} alt="Garabato 2" className='h-52 mx-auto rounded-xl' />
+                  <img src={mafufosGrid[1]} alt="Garabato 2" className='h-52 w-52 mx-auto rounded-xl' />
                 </div>
-                {/* Cuadrante 4 (Gira -90° sobre sí misma) */}
+                {/* Cuadrante 4 */}
                 <div className='w-full h-full flex items-center justify-center -rotate-90'>
-                  <img src={mafufosGrid[3]} alt="Garabato 4" className='h-52 mx-auto rounded-xl' />
+                  <img src={mafufosGrid[3]} alt="Garabato 4" className='h-52 w-52 mx-auto rounded-xl' />
                 </div>
-                {/* Cuadrante 3 (Gira 180° sobre sí misma) */}
+                {/* Cuadrante 3 */}
                 <div className='w-full h-full flex items-center justify-center rotate-180'>
-                  <img src={mafufosGrid[2]} alt="Garabato 3" className='h-52 mx-auto my-2 rounded-xl' />
+                  <img src={mafufosGrid[2]} alt="Garabato 3" className='h-52 w-52 mx-auto my-2 rounded-xl' />
                 </div>
               </div>
             </div>
@@ -142,15 +148,36 @@ function App() {
 
         </div>
 
+        {/* Sección inferior con Stack de Tarjetas */}
         <div className='grid grid-cols-1 mt-2'>
-          <div className='border-2 border-black/50 rounded-xl p-2 font-semibold flex'>
-            <img src="/images/dibujos/nepo1.png" alt="" className='h-52 w-6/12 mx-auto' />
-            <img src="/images/dibujos/mosca.png" alt="" className='w-40'/>
+          <div className='border-2 border-black/50 rounded-xl p-2 font-semibold flex items-center justify-around'>
+            <img src="/images/dibujos/nepo1.png" alt="" className='h-52 object-contain' />
+            <img src="/images/dibujos/mosca.png" alt="" className='w-40 object-contain'/>
           </div>
         </div>
+                    
+            {/* Contenedor del Stack con tamaño explícito para evitar problemas de maquetación */}
+            <div className='w-52 h-84 relative mx-auto flex items-center justify-center'>
+              <Stack
+                randomRotation={false}
+                sensitivity={200}
+                sendToBackOnClick={true}
+                cards={stackImages.map((src, i) => (
+                  <img 
+                    key={i} 
+                    src={src} 
+                    alt={`card-${i + 1}`} 
+                    className="w-full h-full object-cover rounded-xl"
+                  />
+                ))}
+                autoplay={false}
+                autoplayDelay={3000}
+                pauseOnHover={false}
+              />
+            </div>
       </section>
     </div>
-  );
+  )
 }
 
 export default App
