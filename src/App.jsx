@@ -7,36 +7,53 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(0)
 
-  // Lista de imágenes base
+  // --- Lógica Carrusel "Monos" (Deslizamiento infinito) ---
   const monosImages = [
     '/images/dibujos/taika.png',
     '/images/dibujos/zorro.png',
     '/images/dibujos/nepo3.png',
+    '/images/dibujos/michoacanabn.png',
   ]
-
-  // Duplicamos la primera imagen al final para hacer el loop
   const extendedMonosImages = [...monosImages, monosImages[0]]
 
   const [currentMonoIndex, setCurrentMonoIndex] = useState(0)
-  const [isTransitioning, setIsTransitioning] = useState(true)
+  const [isMonoTransitioning, setIsMonoTransitioning] = useState(true)
 
-  // Transición del carrusel con loop infinito
   useEffect(() => {
     const interval = setInterval(() => {
-      setIsTransitioning(true)
+      setIsMonoTransitioning(true)
       setCurrentMonoIndex((prevIndex) => prevIndex + 1)
     }, 4000)
 
     return () => clearInterval(interval)
   }, [])
 
-  // Al terminar la animación hacia la imagen clonada, reseteamos a la 0 sin transición
-  const handleTransitionEnd = () => {
+  const handleMonoTransitionEnd = () => {
     if (currentMonoIndex === monosImages.length) {
-      setIsTransitioning(false)
+      setIsMonoTransitioning(false)
       setCurrentMonoIndex(0)
     }
   }
+
+  const mafufosGrid = [
+    '/images/dibujos/fondo1.png',
+    '/images/dibujos/fondo2.png',
+    '/images/dibujos/fondo3.png',
+    '/images/dibujos/fondo4.png',
+  ]
+
+  const [mafufosStep, setMafufosStep] = useState(0)
+
+
+  const currentRotation = mafufosStep * -90
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMafufosStep((prev) => prev + 1)
+    }, 8000)
+
+    return () => clearInterval(interval)
+  }, [])
 
   return (
     <div className="min-h-screen bg-stone-300 text-black flex flex-col items-center p-3">
@@ -65,20 +82,48 @@ function App() {
 
       <section className='w-full mt-3'>
         <div className="grid grid-cols-3 gap-2">
-          <div className='col-span-2 border-2 border-black/50 rounded-xl px-2 font-semibold'>
-            <h3 className='mb-2 text-sm'>Garabatos Mafufos</h3>
-            <img src="/images/dibujos/fondo1.png" alt="" className='h-52 mx-auto' />
+          
+          {/* Garabatos Mafufos: Rotación continua por cuadrantes */}
+          <div className='col-span-2 border-2 border-black/50 rounded-xl px-1 font-semibold overflow-hidden flex flex-col'>
+            <h3 className='mb-2 text-sm w-11/12 mx-auto'>GARABATOS MAFUFOS</h3>
+            
+            <div className='relative h-52 w-full overflow-hidden my-auto'>
+              <div
+                className='absolute w-[200%] h-[200%] grid grid-cols-2 grid-rows-2 transition-transform duration-1500 ease-in-out gap-4'
+                style={{
+                  transform: `rotate(${currentRotation}deg)`,
+                  transformOrigin: '50% 50%'
+                }}
+              >
+                {/* Cuadrante 1 */}
+                <div className='w-full h-full flex items-center justify-center'>
+                  <img src={mafufosGrid[0]} alt="Garabato 1" className='h-52 mx-auto rounded-xl' />
+                </div>
+                {/* Cuadrante 2 (Gira 90° sobre sí misma para quedar derechita al entrar) */}
+                <div className='w-full h-full flex items-center justify-center rotate-90'>
+                  <img src={mafufosGrid[1]} alt="Garabato 2" className='h-52 mx-auto rounded-xl' />
+                </div>
+                {/* Cuadrante 4 (Gira -90° sobre sí misma) */}
+                <div className='w-full h-full flex items-center justify-center -rotate-90'>
+                  <img src={mafufosGrid[3]} alt="Garabato 4" className='h-52 mx-auto rounded-xl' />
+                </div>
+                {/* Cuadrante 3 (Gira 180° sobre sí misma) */}
+                <div className='w-full h-full flex items-center justify-center rotate-180'>
+                  <img src={mafufosGrid[2]} alt="Garabato 3" className='h-52 mx-auto my-2 rounded-xl' />
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Carrusel con deslizamiento infinito */}
+          {/* Monos */}
           <div className='border-2 border-black/50 rounded-xl px-2 font-semibold overflow-hidden flex flex-col'>
-            <h3 className='mb-2 text-sm'>Monos</h3>
+            <h3 className='mb-2 text-sm'>MONOS</h3>
             
             <div className='relative h-52 w-full overflow-hidden my-auto'>
               <div 
-                onTransitionEnd={handleTransitionEnd}
+                onTransitionEnd={handleMonoTransitionEnd}
                 className={`flex h-full w-full ${
-                  isTransitioning ? 'transition-transform duration-1000 ease-in-out' : ''
+                  isMonoTransitioning ? 'transition-transform duration-1000 ease-in-out' : ''
                 }`}
                 style={{ transform: `translateX(-${currentMonoIndex * 100}%)` }}
               >
@@ -94,6 +139,7 @@ function App() {
               </div>
             </div>
           </div>
+
         </div>
 
         <div className='grid grid-cols-1 mt-2'>
