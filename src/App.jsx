@@ -66,7 +66,7 @@ function App() {
 
   return (
     <div className="min-h-screen  text-black  ">
-      <div className='bg-stone-300 flex flex-col items-center p-3'>
+      <div className='bg-stone-200 flex flex-col items-center p-3'>
         <section className='w-full flex mt-4'>
           <div className='w-8/12 my-auto'>
             <h1 className="text-6xl font-bold text-center">
@@ -92,7 +92,7 @@ function App() {
       </div>
 
       {/* Seccion   Comic*/}
-      <section className='w-full px-3 bg-stone-300 '>
+      <section className='w-full px-3 bg-stone-200 '>
         <div className="grid grid-cols-3 gap-2 ">
 
           {/* Garabatos Mafufos  */}
@@ -165,42 +165,59 @@ function App() {
 
 
 
-      <section className='p-2 bg-stone-300 py-20'>
-        <h4 className='w-11/12 mx-auto text-lg text-center mt-16 uppercase scale-y-200 origin-bottom font-semibold'>Al final es inevitable cumplir con el rigor diario de ponerme a rayar a lo mafufote </h4>
-        
-        <img src="/images/dibujos/cactus.png" alt="" className='h-14 ml-auto object-contain mb-8 relative bottom-15' />
+      <section className='p-2 bg-stone-200 py-20'>
+        <h4 className='w-11/12 mx-auto text-lg text-center mt-16 uppercase scale-y-200 origin-bottom font-semibold'>Es inevitable no cumplir con el rigor diario de ponerme a rayar a lo mafufote </h4>
+
+        <img src="/images/dibujos/cactus.png" alt="" className='h-14 ml-auto object-contain relative bottom-15' />
+
+        <div className=' pt-14'>
+          <div className=" h-100 w-80 overflow-hidden aspect-video rotate-x-180 mx-auto ">
+            <video
+              className=" h-100 object-fit rounded-xl border-2 border-black/80 ml-auto"
+              autoPlay
+              muted
+              loop
+              playsInline
+            >
+              <source src="/videos/video2.mp4" type="video/mp4" />
+              Tu navegador no soporta la etiqueta de video.
+            </video>
+          </div>
 
 
-        <div className=" h-120 w-full overflow-hidden aspect-video rotate-x-180 ">
-          <video
-            className=" h-full object-fit rounded-xl border-2 border-black/80"
-            autoPlay
-            muted
-            loop
-            playsInline
-          >
-            <source src="/videos/video2.mp4" type="video/mp4" />
-            Tu navegador no soporta la etiqueta de video.
-          </video>
+
+
+          <div className=" h-120 w-80 overflow-hidden aspect-video  mx-auto">
+            <video
+              className=" h-90 object-fit rounded-xl border-2 border-black/80 mt-16"
+              autoPlay
+              muted
+              loop
+              playsInline
+            >
+              <source src="/videos/video1.mp4" type="video/mp4" />
+              Tu navegador no soporta la etiqueta de video.
+            </video>
+          </div>
+
+
+          <div className=" h-100 w-80 overflow-hidden aspect-video mx-auto mt-8">
+            <video
+              className=" h-100 object-fit rounded-xl border-2 border-black/80 ml-auto"
+              autoPlay
+              muted
+              loop
+              playsInline
+            >
+              <source src="/videos/video3.mp4" type="video/mp4" />
+              Tu navegador no soporta la etiqueta de video.
+            </video>
+          </div>
+
         </div>
 
 
 
-
-        <div className=" h-120 w-full overflow-hidden aspect-video ">
-          <video
-            className=" h-full object-fit rounded-xl border-2 border-black/80 ml-auto mt-8"
-            autoPlay
-            muted
-            loop
-            playsInline
-          >
-            <source src="/videos/video1.mp4" type="video/mp4" />
-            Tu navegador no soporta la etiqueta de video.
-          </video>
-        </div>
-
-        
 
       </section>
 
@@ -213,7 +230,7 @@ function App() {
         <h3 className='text-stone-300 font-bold text-xl pt-16 text-center'>Adquiere la colección de</h3>
         <h2 className='text-stone-300 font-bold text-5xl  text-center'>FANZINES NEPO</h2>
 
-        <div className='w-85 h-126 relative mx-auto flex items-center justify-center overflow-hidden'>
+        <div className='w-70 h-110 relative mx-auto flex items-center justify-center '>
           <Stack
             randomRotation={false}
             sensitivity={200}
