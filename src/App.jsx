@@ -92,7 +92,7 @@ function App() {
       </div>
 
       {/* Seccion   Comic*/}
-      <section className='w-full px-3 bg-stone-300 pb-14'>
+      <section className='w-full px-3 bg-stone-300 '>
         <div className="grid grid-cols-3 gap-2 ">
 
           {/* Garabatos Mafufos  */}
@@ -154,31 +154,66 @@ function App() {
         </div>
 
         {/* INTER NEPO Y MOSCA */}
-        <div className='grid grid-cols-1 mt-2 border-2 border-black/50 rounded-xl p-2'>
+        <div className='grid grid-cols-1 mt-2 border-2 border-black/50 rounded-xl py-10'>
           <div className=' font-semibold flex items-center justify-around mt-2'>
             <img src="/images/dibujos/nepo1.png" alt="" className='h-52 object-contain' />
             <img src="/images/dibujos/mosca.png" alt="" className='w-40 object-contain' />
           </div>
-
-          <div className=' '>
-            <div className='mt-4 flex'>
-              <img src="/images/dibujos/michoacanabn.png" alt="" className='h-24 ml-auto bg-amber-50/30 skew-x-16 -rotate-y-180 object-contain rounded' />
-              <img src="/images/dibujos/cactus.png" alt="" className='h-14 ml-auto object-contain' />
-
-            </div>
-
-          </div>
         </div>
+
       </section>
 
 
 
+      <section className='p-2 bg-stone-300 py-20'>
+        <h4 className='w-11/12 mx-auto text-lg text-center mt-16 uppercase scale-y-200 origin-bottom font-semibold'>Al final es inevitable cumplir con el rigor diario de ponerme a rayar a lo mafufote </h4>
+        
+        <img src="/images/dibujos/cactus.png" alt="" className='h-14 ml-auto object-contain mb-8 relative bottom-15' />
+
+
+        <div className=" h-120 w-full overflow-hidden aspect-video rotate-x-180 ">
+          <video
+            className=" h-full object-fit rounded-xl border-2 border-black/80"
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
+            <source src="/videos/video2.mp4" type="video/mp4" />
+            Tu navegador no soporta la etiqueta de video.
+          </video>
+        </div>
+
+
+
+
+        <div className=" h-120 w-full overflow-hidden aspect-video ">
+          <video
+            className=" h-full object-fit rounded-xl border-2 border-black/80 ml-auto mt-8"
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
+            <source src="/videos/video1.mp4" type="video/mp4" />
+            Tu navegador no soporta la etiqueta de video.
+          </video>
+        </div>
+
+        
+
+      </section>
+
+
+
+
+
+      {/* Seccion FANZINES NEPO*/}
       <section className='bg-black/90 w-full h-200'>
         <h3 className='text-stone-300 font-bold text-xl pt-16 text-center'>Adquiere la colección de</h3>
         <h2 className='text-stone-300 font-bold text-5xl  text-center'>FANZINES NEPO</h2>
 
-        {/* FANZINES NEPO */}
-        <div className='w-85 h-126 relative mx-auto flex items-center justify-center '>
+        <div className='w-85 h-126 relative mx-auto flex items-center justify-center overflow-hidden'>
           <Stack
             randomRotation={false}
             sensitivity={200}
